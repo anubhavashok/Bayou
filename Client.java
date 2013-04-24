@@ -15,4 +15,9 @@ public class Client
     s.setURL(URL);
     add(s);
   }
+  public ArrayList<SongEntry> getPlaylist()
+  {
+    //return current databse stored in local server.
+    //OR wait for stable state and return stableDatabase
+  }
 }
