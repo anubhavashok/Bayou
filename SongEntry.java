@@ -2,7 +2,11 @@ public class SongEntry
 {
   private String songName;
   private String URL;
-  
+  SongEntry(String songName, String URL)
+  {
+    this.songName = songName;
+    this.URL=URL;
+  }
   public String getSongName()
   {
     return songName;
