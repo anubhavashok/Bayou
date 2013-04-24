@@ -16,7 +16,8 @@ public class Client
   public void edit(SongEntry s, String URL)
   {
     s.setURL(URL);
-    add(s);
+    Write w = new Write(s,"modify");
+    sendWrite(w);
   }
   public ArrayList<SongEntry> getPlaylist()
   {
