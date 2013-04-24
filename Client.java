@@ -3,12 +3,15 @@ public class Client
   public void add(SongEntry s)
   {
     //send song entry to server that it is connected to.
-    sendWrite(s,"add");
+    
+    Write w= new Write(s,"add");
+    sendWrite(w);
   }
   public void delete(SongEntry s)
   {
     //send delete request to server that its connected to.
-    sendWrite(s,"delete");
+    Write w = new Write(s,"delete");
+    sendWrite(w);
   }
   public void edit(SongEntry s, String URL)
   {
