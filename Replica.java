@@ -6,7 +6,7 @@ public class Replica
   
   public void receiveWriteFromClient(Write w)
   {
-    if(w.getOp())
+    
   }
   
 }
