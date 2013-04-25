@@ -17,5 +17,17 @@ public class Replica
     i=new Integer(i.intValue() + 1);            //increment version id of current replica
     V.set(id,i);
   }
+  public void selectToSend()
+  {
+    ArrayList<Integer> V;                       //Vector received from replica server
+    for(int i=0;i<writeLog.size();i++)
+    {
+      Write w = writeLog.get(i);
+      if(V.(w.getReplicaId())<w.getAcceptTime)  //possible error comparing 2 Integers
+      {
+        sendWrite(w);                           //send new write to the server
+      }
+    }
+  }
   
 }
