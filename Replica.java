@@ -19,7 +19,7 @@ public class Replica
   }
   public void selectToSend()
   {
-    ArrayList<Integer> V;                       //Vector received from replica server
+    ArrayList<Integer> V;                       //Version vector received from replica server
     for(int i=0;i<writeLog.size();i++)
     {
       Write w = writeLog.get(i);
