@@ -2,6 +2,8 @@ public class Write
 {
   private String op;
   private SongEntry s;
+  private int acceptTime;
+  private int replicaId;
   Write(SongEntry s, String op)
   {
     setOp(op);
@@ -23,4 +25,21 @@ public class Write
   {
     this.s=s;
   }
+  public int getAcceptTime()
+  {
+    return acceptTime;
+  }
+  public void setAcceptTime(int acceptTime)
+  {
+    this.acceptTime=acceptTime;
+  }
+   public int getReplicaId()
+  {
+    return replicaId;
+  }
+  public void setReplicaId(int replicaId)
+  {
+    this.replicaId=replicaId;
+  }
+}
 }
