@@ -23,11 +23,22 @@ public class Replica
     for(int i=0;i<writeLog.size();i++)
     {
       Write w = writeLog.get(i);
-      if(V.(w.getReplicaId())<w.getAcceptTime)  //possible error comparing 2 Integers
+      if(V.get(w.getReplicaId())<w.getAcceptTime)  //possible error comparing 2 Integers
       {
         sendWrite(w);                           //send new write to the server
       }
     }
+  }
+  public void receiveWriteFromReplica()
+  {
+    Write w;                                    //new write received from Replica
+    writeLog.add(w);
+    Integer i = V.get(w.getReplicaId());
+    i=new Integer(i.intValue() + 1);
+    V.set(w.getReplicaId(),i);                  //update version vector value of write
+    
+    
+    
   }
   
 }
