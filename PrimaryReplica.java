@@ -9,6 +9,10 @@ public class PrimaryReplica extends Replica
       if(w.getOp().equals("add"))
       {
         database.add(w.getSongEntry());
+        int i =writeLog.indexOf(w);
+        w.setCSN(CSNCount);
+        CSNCount++;
+        writeLog.set(i,w);
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
       if(w.getOp().equals("delete"))
@@ -22,10 +26,16 @@ public class PrimaryReplica extends Replica
         {
           if(s.getSongName().equals(w.getSongEntry().getSongName()))
           {
-            database.delete(w.getSongEntry());
+            database.remove(s);
+            database.add(w.getSongEntry());
+            //store w with updated CSN in writelog for further propogation.
+            int i =writeLog.indexOf(w);
+            w.setCSN(CSNCount);
+            CSNCount++;
+            writeLog.set(i,w);
           }
         }
-        database.add(w.getSongEntry());
+
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
     }
