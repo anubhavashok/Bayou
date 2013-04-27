@@ -9,6 +9,7 @@ public class Write
   {
     setOp(op);
     setSongEntry(s);
+    setCSN(-1);             // where -1 represents infinity
   }
   public String getOp()
   {
