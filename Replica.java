@@ -1,7 +1,7 @@
 public class Replica
 {
-  private set<SongEntry> database;        //current database version
-  private set<SongEntry> stableDatabase;  //back up after garbage collection
+  private Set<SongEntry> database;        //current database version
+  private Set<SongEntry> stableDatabase;  //back up after garbage collection
   private ArrayList<Write> writeLog;
   private int id;
   private int acceptTime=0;
