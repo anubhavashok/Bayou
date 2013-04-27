@@ -4,6 +4,7 @@ public class Write
   private SongEntry s;
   private int acceptTime;
   private int replicaId;
+  private int CSN;
   Write(SongEntry s, String op)
   {
     setOp(op);
@@ -41,5 +42,13 @@ public class Write
   {
     this.replicaId=replicaId;
   }
+  public void setCSN(int CSN)
+  {
+    this.CSN=CSN;
+  }
+  public int getCSN()
+  {
+    return CSN;
+  }
 }
-}
+
