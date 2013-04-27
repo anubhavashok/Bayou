@@ -47,10 +47,12 @@ public class Replica
       if(w.getOp().equals("add"))
       {
         database.add(w.getSongEntry());
+        //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
       if(w.getOp().equals("delete"))
       {
         database.remove(w.getSongEntry());
+        //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
       if(w.getOp().equals("modify"))
       {
@@ -62,6 +64,7 @@ public class Replica
           }
         }
         database.add(w.getSongEntry());
+        //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
     }
   }
