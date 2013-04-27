@@ -1,6 +1,7 @@
 public class PrimaryReplica extends Replica
 {
   private int CSNCount=0;
+  private ArrayList<Write> committedWriteLog;
   
   public void mergeWithDatabase()
   {
@@ -13,6 +14,7 @@ public class PrimaryReplica extends Replica
         w.setCSN(CSNCount);
         CSNCount++;
         writeLog.set(i,w);
+        committedWriteLog.add(w);
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
       if(w.getOp().equals("delete"))
@@ -22,6 +24,7 @@ public class PrimaryReplica extends Replica
         w.setCSN(CSNCount);
         CSNCount++;
         writeLog.set(i,w);
+        committedWriteLog.add(w);
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
       if(w.getOp().equals("modify"))
@@ -37,6 +40,7 @@ public class PrimaryReplica extends Replica
             w.setCSN(CSNCount);
             CSNCount++;
             writeLog.set(i,w);
+            committedWriteLog.add(w);
           }
         }
 
