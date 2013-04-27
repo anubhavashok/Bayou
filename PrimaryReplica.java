@@ -18,6 +18,10 @@ public class PrimaryReplica extends Replica
       if(w.getOp().equals("delete"))
       {
         database.remove(w.getSongEntry());
+        int i =writeLog.indexOf(w);
+        w.setCSN(CSNCount);
+        CSNCount++;
+        writeLog.set(i,w);
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
       if(w.getOp().equals("modify"))
