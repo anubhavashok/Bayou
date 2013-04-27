@@ -36,7 +36,7 @@ public class Replica
     Integer i = V.get(w.getReplicaId());
     i=new Integer(i.intValue() + 1);
     V.set(w.getReplicaId(),i);                  //update version vector value of write
-    
+    //check for CSN
     
     
   }
