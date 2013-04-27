@@ -48,4 +48,28 @@ public class PrimaryReplica extends Replica
       }
     }
   }
+  
+  public void selectToSend()
+  {
+    ArrayList<Integer> V;                       //Version vector received from replica server
+    int RCSN;                                   //highest CSN from the replica server
+    if(RCSN<CSN)
+    {
+      for(int i=RCSN+1; i<CSN; i++)     //Send over all the committed writes
+      {
+            Write w = committedWriteLog.get(i);
+            if(w.getAcceptTime()<=V.get(w.getReplicaId()).valueOf())
+            {
+             //R has the write, but does not know it is committed 
+             //SendCommitNotification();
+            }
+            else
+            {
+              //R does not have the committed write
+              sendWrite(w);
+            }
+      }
+
+    }
+  }
 }
