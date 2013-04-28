@@ -1,4 +1,4 @@
-public class Write
+public class Write implements Serializable 
 {
   private String op;
   private SongEntry s;
