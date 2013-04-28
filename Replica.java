@@ -7,9 +7,47 @@ public class Replica
   private int acceptTime=0;
   private ArrayList<Integer> V;                 // initialize this + implement removal of nodes
 
+  public Write receiveWrite() throws IOException
+  {
+    	ServerSocket ss= new ServerSocket(1234);
+  		//System.out.println(n);
+  		ss.setReuseAddress(true); 
+  		ss.setSoTimeout(2000);
+  		//n++;
+  	try
+    {
+    	 	Socket s = ss.accept();
+    		s.setReuseAddress(true); 
+    		s.setSoTimeout(2000);
+    		System.out.println(s.getSoTimeout() );
+    		System.out.println(s.getReuseAddress() );
+  	   	InputStream is = s.getInputStream();
+  	   	ObjectInputStream ois = new ObjectInputStream(is);
+  	  	Write w=null;
+  
+  	  	w=(Write)ois.readObject();
+  	   	is.close();
+  	   	s.close();
+  	   	ss.close();
+  
+  		return w;
+  	}
+  
+  	catch(Exception e)
+  	{
+  		System.out.println(e.getLocalizedMessage());
+  		return null;
+  	}
+  }
+
+
+
+
+
+
   public void receiveWriteFromClient()
   {
-    Write w;                                    //new write that was received
+    Write w=receiveWrite();                                    //new write that was received
     w.setReplicaId(id);
     w.setAcceptTime(acceptTime);
     writeLog.add(w);
@@ -31,7 +69,7 @@ public class Replica
   }
   public void receiveWriteFromReplica()
   {
-    Write w;                                    //new write received from Replica
+    Write w=receiveWrite();                                    //new write received from Replica
     writeLog.add(w);
     Integer i = V.get(w.getReplicaId());
     i=new Integer(i.intValue() + 1);
