@@ -1,4 +1,4 @@
 public class Init
 {
-  int primaryCSN;
+  public int primaryCSN;
 }
