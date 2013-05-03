@@ -15,10 +15,9 @@ public class Instruction
         setInstr(i);
         setReplicaIP(r);
     }
-    Instr(String i, String r, Write w)
+    Instr(String i, Write w)
     {
         setInstr(i);
-        setReplicaIP(r);
         setWrite(w);
     }
     
