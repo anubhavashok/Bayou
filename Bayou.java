@@ -43,4 +43,28 @@ public class Bayou
     }
     else return null;
   }
+  public writeRequest(String clientIP)
+  {
+    Scanner s = new Scanner(System.in);
+    System.out.println("Please which id client you want to use to do the write: ");
+    int id = s.nextInt();
+    System.out.println("Please enter what kind of operation you want to do: ");
+    String op = s.nextLine();
+    System.out.println("Please enter Song Name: ");
+    String songName=s.nextLine();
+    String URL=null;
+    if(op.equals("add"))
+    {
+      System.out.println("Please enter Song URL: ");
+      URL=s.nextLine();
+    }
+    if(op.equals("modify"))
+    {
+      System.out.println("Please enter new Song URL: ");
+      URL=s.nextLine();
+    }
+    Write w = new Write(new SongEntry(songName,URL),op);
+    Instruction i = new Instruction("Write", w);
+    sendInstructionToClient(I,clientIP);            //called by bayouhandler
+  }
 }
