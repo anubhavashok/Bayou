@@ -6,13 +6,7 @@ public class BayouHandler
      s.receiveWriteFromClient();
      c.writeToServer(w);
     }
-    
-    public void initiateAntiEntropy(Replica r1, Replica r2)
-    {
-     r2.receiveWriteFromReplica();
-     r1.selectToSend();
-     
-    }
+
     public void startClient(Client i, Replica j)
     {
       Client i = new Client(j.getInetAddress());
@@ -76,6 +70,7 @@ public class BayouHandler
       i.selectToSend();                              
       j.receiveWriteFromReplica();                 
     }
+    
 
   
 }
