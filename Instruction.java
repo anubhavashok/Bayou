@@ -3,6 +3,7 @@ public class Instruction
     private String instr;
     private String replicaIP;
     private int order;
+    private Write w;
     Instr(String i, String r, int o)
     {
         setInstr(i);
@@ -22,6 +23,10 @@ public class Instruction
     {
       this.order=o;
     }
+    public void setWrite(Write w)
+    {
+        this.w=w;
+    }
     public String getInstr()
     {
       return instr;
@@ -33,6 +38,10 @@ public class Instruction
     public int getOrder()
     {
       return order;
+    }
+    public Write getWrite()
+    {
+        return w;
     }
     
 }
