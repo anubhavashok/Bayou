@@ -48,15 +48,15 @@ public class ClientHandler
       {
         if(I.getWrite().getOp().equals("add"))
         {
-          c.add(I.getSongEntry());
+          c.add(I.getWrite().getSongEntry());
         }
         if(I.getWrite().getOp().equals("delete"))
         {
-          c.delete(I.getSongEntry());
+          c.delete(I.getWrite().getSongEntry());
         }
         if(I.getWrite().getOp().equals("modify"))
         {
-          c.modify(I.getSongEntry());
+          c.modify(I.getWrite().getSongEntry());
         }
       }
     } 
