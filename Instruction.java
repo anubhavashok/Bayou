@@ -10,6 +10,17 @@ public class Instruction
         setReplicaIP(r);
         setOrder(o);
     }
+    Instr(String i, String r)
+    {
+        setInstr(i);
+        setReplicaIP(r);
+    }
+    Instr(String i, String r, Write w)
+    {
+        setInstr(i);
+        setReplicaIP(r);
+        setWrite(w);
+    }
     
     public void setInstr(String instr)
     {
