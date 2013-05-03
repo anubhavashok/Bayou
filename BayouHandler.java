@@ -56,19 +56,20 @@ public class BayouHandler
     //-------------------------------------------------------------------------------------------------------//
     public void runAntiEntropy(Replica i, Replica j)
     {
-      j.selectToSend();                              //j sends write to i
+        Instruction toJ=new Instruction("startAntiEntropy",Bayou.getIP(i.getId()),0);
+        Instruction toI=new Instruction("startAntiEntropy",Bayou.getIP(j.getId()),1);
+      /*j.selectToSend();                              //j sends write to i
       i.receiveWriteFromReplica();                  //i receives writes from j
             
       i.selectToSend();                              
-      j.receiveWriteFromReplica();                 
+      j.receiveWriteFromReplica();  */               
     }
     public void runAntiEntropy(PrimaryReplica i, Replica j)
     {
-      j.selectToSend();                              //j sends write to i
+      Instruction toJ=new Instruction("startAntiEntropy",Bayou.getIP(i.getId()),0);
       i.receiveWriteFromReplica();                  //i receives writes from j
-            
       i.selectToSend();                              
-      j.receiveWriteFromReplica();                 
+               
     }
     
 
