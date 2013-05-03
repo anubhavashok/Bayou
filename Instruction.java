@@ -3,6 +3,12 @@ public class Instruction
     private String instr;
     private String replicaIP;
     private int order;
+    Instr(String i, String r, int o)
+    {
+        setInstr(i);
+        setReplicaIP(r);
+        setOrder(o);
+    }
     
     public void setInstr(String instr)
     {
