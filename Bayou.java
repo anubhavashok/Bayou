@@ -18,7 +18,7 @@ public class Bayou
     for(int i=0;i<totalReplicas;i++)
     {
       Scanner s = new Scanner(System.in);
-      System.out.println("Please enter the ID number of the replica started: ");
+      System.out.println("Please enter the ID number of the replica started (greater than 0): ");
       int id= s.nextInt();
       System.out.println("Please enter the IP address of the replica started: ");
       String ip = s.nextLine();
