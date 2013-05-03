@@ -1,16 +1,15 @@
 public class BayouHandler
 {
-    public void initiateClientToServer(Client c, Replica s, Write w)
+    public void initiateClientToServer(String ipClient, Write w)
     {
-     c.setServer(s);
-     s.receiveWriteFromClient();
-     c.writeToServer(w);
+     Instruction I = new Instruction("Write",w);
+     sendInstructionToClien(I,ipClient);
     }
 
-    public void startClient(Client i, Replica j)
+    public void startClient(String ipClient, String ipReplica)
     {
-      Client i = new Client(j.getInetAddress());
-      //Client i is a locally stored client
+      Instruction I= new Instruction("connectToServer",ipReplica);
+      sendInstructionToClient(I,ipClient);
     }
     public void clientDisconnect(Client i)
     {
