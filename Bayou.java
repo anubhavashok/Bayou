@@ -10,6 +10,8 @@ public class Bayou
     Scanner s = new Scanner(System.in);
     String totalReplicas = s.nextLine();
     Init.totalReplicas=totalReplicas;
+    setUpReplicas();
+    
     
     
   }
@@ -29,6 +31,7 @@ public class Bayou
       replicas.add(r);
     }
   }
+
   public String getIP(int id)
   {
     for(String[] s: replicas)
