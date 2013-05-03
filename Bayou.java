@@ -2,7 +2,7 @@ public class Bayou
 {
   public static void main(String[] args)
   {
-    static Vector<Thread> replicas=new Vector<Thread>();
+    static ArrayList<String[]> replicas=new ArrayList<String[]>();
     static Vector<Thread> clients= new Vector<Thread>();
     //set total nodes
     System.out.println("Please enter number of replicas: ");
@@ -16,14 +16,27 @@ public class Bayou
   {
     for(int i=0;i<totalReplicas;i++)
     {
-      System.out.println("Please enter the IP address of the replica started: ");
       Scanner s = new Scanner(System.in);
-      String ip = s.nextLine();
       System.out.println("Please enter the ID number of the replica started: ");
       int id= s.nextInt();
-      Replica s = new Replica(id,ip);
-      Thread t = new Thread(s);
-      replicas.add(t);
+      System.out.println("Please enter the IP address of the replica started: ");
+      String ip = s.nextLine();
+
+      String[] r = new String[2];
+      r[0]=id;
+      r[1]=ip;
+      replicas.add(r);
     }
+  }
+  public String getIP(int id)
+  {
+    for(String[] s: replicas)
+    {
+      if(s[0].equals(Integer.toString(id))) //id found
+      {
+        return s[1];                        //return IP
+      }
+    }
+    else return null;
   }
 }
