@@ -2,8 +2,9 @@ public class Bayou
 {
   public static void main(String[] args)
   {
-    static ArrayList<String[]> replicas=new ArrayList<String[]>();
-    static Vector<Thread> clients= new Vector<Thread>();
+    private ArrayList<String[]> replicas=new ArrayList<String[]>();
+    private Client c= new Client(InetAddress.getLocalHost());
+    private PrimaryReplica pr= new PrimaryReplica(0,InetAddress.getLocalHost().getHostAddress());
     //set total nodes
     System.out.println("Please enter number of replicas: ");
     Scanner s = new Scanner(System.in);
