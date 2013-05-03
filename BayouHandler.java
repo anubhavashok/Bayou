@@ -66,6 +66,7 @@ public class BayouHandler
     }
     public void runAntiEntropy(PrimaryReplica i, Replica j)
     {
+      //where primaryReplica is the one used on this current server
       Instruction toJ=new Instruction("startAntiEntropy",Bayou.getIP(i.getId()),0);
       i.receiveWriteFromReplica();                  //i receives writes from j
       i.selectToSend();                              
