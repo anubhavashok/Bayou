@@ -60,4 +60,8 @@ public class ClientHandler
         }
       }
     } 
+    public String getServerIP()
+    {
+        return c.getServerIP();
+    }
 }
