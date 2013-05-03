@@ -12,8 +12,6 @@ public class Bayou
     Init.totalReplicas=totalReplicas;
     setUpReplicas();
     
-    
-    
   }
   public void setUpReplicas()
   {
