@@ -57,9 +57,9 @@ public class BayouHandler
     public void runAntiEntropy(Replica i, Replica j)
     {
         Instruction toJ=new Instruction("startAntiEntropy",Bayou.getIP(i.getId()),0);
-        sendInstruction(toJ,Bayou.getIP(j.getId()));
+        sendInstructionToReplica(toJ,Bayou.getIP(j.getId()));
         Instruction toI=new Instruction("startAntiEntropy",Bayou.getIP(j.getId()),1);
-        sendInstruction(toI,Bayou.getIP(i.getId()));
+        sendInstructionToReplica(toI,Bayou.getIP(i.getId()));
       /*j.selectToSend();                              //j sends write to i
       i.receiveWriteFromReplica();                  //i receives writes from j
             
@@ -70,16 +70,36 @@ public class BayouHandler
     {
       //where primaryReplica is the one used on this current server
       Instruction toJ=new Instruction("startAntiEntropy",Bayou.getIP(i.getId()),0);
+      sendInstructionToReplica(toJ,Bayou.getIP(j.getId()));
       i.receiveWriteFromReplica();                  //i receives writes from j
       i.selectToSend();                              
                
     }
-      public void sendInstruction(Instruction I,String IP)
+      public void sendInstructionToReplica(Instruction I,String IP)
       {
         try{
             InetAddress svr = InetAddress.getByName(IP);
   //  Thread.sleep(3000);    					//wait for 3 seconds before sending to ensure process has completed processing and is waiting to receive
         Socket skt = new Socket(svr,2000);
+        OutputStream os = skt.getOutputStream();
+        ObjectOutputStream oos = new ObjectOutputStream(os);
+        oos.writeObject(V);
+        
+        oos.close();
+        os.close();
+        skt.close();
+   //     Thread.sleep(1000);
+      	}
+      	catch(Exception e)
+      	{
+      	}
+      }
+      public void sendInstructionToClient(Instruction I,String IP)
+      {
+        try{
+            InetAddress svr = InetAddress.getByName(IP);
+  //  Thread.sleep(3000);        				//wait for 3 seconds before sending to ensure process has completed processing and is waiting to receive
+        Socket skt = new Socket(svr,2002);
         OutputStream os = skt.getOutputStream();
         ObjectOutputStream oos = new ObjectOutputStream(os);
         oos.writeObject(V);
