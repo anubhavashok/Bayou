@@ -1,9 +1,13 @@
 public class ClientHandler
 {
-  Client c;
+    Client c;
+    public static void main(String[] args)
+    {
+      executeInstruction(waitForInstructions());
+    }
     public Instruction waitForInstructions() throws IOException
     {
-          ServerSocket ss= new ServerSocket(2000);
+      ServerSocket ss= new ServerSocket(2001);
        //System.out.println(n);
        ss.setReuseAddress(true);
        ss.setSoTimeout(0);
@@ -33,4 +37,27 @@ public class ClientHandler
        return null;
        }
     }
+    
+    public void executeInstruction(Instruction I)
+    {
+      if(I.getInst().equals("connectToServer"))
+      {
+        c=new Client(I.getReplicaIP());           //new client connected to server 
+      }
+      if(I.getInst().equals("Write"))
+      {
+        if(I.getWrite().getOp().equals("add"))
+        {
+          c.add(I.getSongEntry());
+        }
+        if(I.getWrite().getOp().equals("delete"))
+        {
+          c.delete(I.getSongEntry());
+        }
+        if(I.getWrite().getOp().equals("modify"))
+        {
+          c.modify(I.getSongEntry());
+        }
+      }
+    } 
 }
