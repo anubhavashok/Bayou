@@ -68,4 +68,8 @@ public class ClientHandler
     {
         return c.getServerIP();
     }
+    public String getIP()
+    {
+        return ip;
+    }
 }
