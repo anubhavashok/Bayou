@@ -1,11 +1,11 @@
-public class SongEntry
+public class SongEntry implements java.io.Serializable 
 {
   private String songName;
   private String URL;
-  SongEntry(String songName, String URL)
+  SongEntry(String setsongName, String setURL)
   {
-    this.songName = songName;
-    this.URL=URL;
+    this.songName = setsongName;
+    this.URL=setURL;
   }
   public String getSongName()
   {
@@ -15,12 +15,12 @@ public class SongEntry
   {
     return URL;
   }
-  public void setSongName(String songName)
+  public void setSongName(String setsongName)
   {
-    this.songName = songName;
+    this.songName = setsongName;
   }
-  public void setURL(String URL)
+  public void setURL(String setURL)
   {
-    this.URL=URL;
+    this.URL=setURL;
   }
 }
