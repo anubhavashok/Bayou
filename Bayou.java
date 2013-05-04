@@ -32,10 +32,7 @@ public class Bayou
       int id= s.nextInt();
       System.out.println("Please enter the IP address of the replica started: ");
       String ip = s.nextLine();
-
-      String[] r = new String[2];
-      r[0]=id;
-      r[1]=ip;
+      ReplicaHandler r = new ReplicaHandler(id,ip);
       replicas.add(r);
     }
   public void setUpClients()
