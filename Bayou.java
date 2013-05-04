@@ -2,7 +2,7 @@ public class Bayou
 {
   public static void main(String[] args)
   {
-    private ArrayList<String[]> replicas=new ArrayList<String[]>();
+    private ArrayList<ReplicaHandler> replicas=new ArrayList<ReplicaHandler>();
     private ArrayList<ClientHandler> clients=new ArrayList<ClientHandler>();
     private Client c= new Client(InetAddress.getLocalHost());
     private PrimaryReplica pr= new PrimaryReplica(0,InetAddress.getLocalHost().getHostAddress());
