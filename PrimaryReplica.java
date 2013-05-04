@@ -1,32 +1,50 @@
+import java.lang.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 public class PrimaryReplica extends Replica
 {
-  private int CSNCount=0;
-  private ArrayList<Write> committedWriteLog;
+  PrimaryReplica(int id,String ip)
+  {
+    super(id, ip);
+
+  }
+  //private int CSNCount=0;
+  //private ArrayList<Write> committedLog;
   
   public void mergeWithDatabase()
   {
     for(Write w: writeLog)
     {
+//-------------ADD---------------//
       if(w.getOp().equals("add"))
-      {
-        database.add(w.getSongEntry());
+      { System.out.println("Song has been added to database");
+  database.add(w.getSongEntry());
         int i =writeLog.indexOf(w);
-        w.setCSN(CSNCount);
-        CSNCount++;
+        w.setCSN(CSN);
+        CSN++;
         writeLog.set(i,w);
-        committedWriteLog.add(w);
+        committedLog.add(w);
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
+//-------------DELETE--------------//
       if(w.getOp().equals("delete"))
-      {
-        database.remove(w.getSongEntry());
+      {System.out.println("Song has been deleted from database");
+	for(SongEntry s: database)
+	{
+ 		if(s.getSongName().equals(w.getSongEntry().getSongName()))
+		{
+			        database.remove(s);
+		}
+	}
         int i =writeLog.indexOf(w);
-        w.setCSN(CSNCount);
-        CSNCount++;
+        w.setCSN(CSN);
+        CSN++;
         writeLog.set(i,w);
-        committedWriteLog.add(w);
+        committedLog.add(w);
         //increment CSN, ADD CSN TO WRITE IN WRITE LOG
       }
+//-------------MODIFY--------------//
       if(w.getOp().equals("modify"))
       {
         for(SongEntry s : database)
@@ -37,10 +55,10 @@ public class PrimaryReplica extends Replica
             database.add(w.getSongEntry());
             //store w with updated CSN in writelog for further propogation.
             int i =writeLog.indexOf(w);
-            w.setCSN(CSNCount);
-            CSNCount++;
+            w.setCSN(CSN);
+            CSN++;
             writeLog.set(i,w);
-            committedWriteLog.add(w);
+            committedLog.add(w);
           }
         }
 
@@ -48,28 +66,34 @@ public class PrimaryReplica extends Replica
       }
     }
   }
-  
+  /*
   public void selectToSend()
   {
-    ArrayList<Integer> V;                       //Version vector received from replica server
-    int RCSN;                                   //highest CSN from the replica server
+    ArrayList<Integer> V=receiveVersionVector(); 	//Version vector received from replica server
+    int RCSN = receiveCSN();				//highest CSN from the replica server
+    Thread.sleep(1000);					//wait for Other server to start receiving
+    
+ //-----------------------//				
+	//SEND COMMITTED WRITES
     if(RCSN<CSN)
     {
-      for(int i=RCSN+1; i<CSN; i++)     //Send over all the committed writes
+      for(int i=RCSN; i<CSN; i++) 			//Send over all the committed writes after RCSN
       {
             Write w = committedWriteLog.get(i);
-            if(w.getAcceptTime()<=V.get(w.getReplicaId()).valueOf())
-            {
-             //R has the write, but does not know it is committed 
-             //SendCommitNotification();
-            }
-            else
-            {
-              //R does not have the committed write
               sendWrite(w);
-            }
       }
-
     }
-  }
+//-------------------------//
+	//SEND TENTATIVE WRITES
+    for(int i=0;i<writeLog.size();i++)
+    {
+      Write w = writeLog.get(i);
+      System.out.println("Song that is being sent: "+(w.getSongEntry()).getSongName());
+      if(V.get(w.getReplicaId())<=w.getAcceptTime()) 	 //possible error comparing 2 Integers
+      {
+	System.out.println("sent");
+        sendWrite(w);                          		 //send new write to the server
+      }
+    }
+  }*/
 }
