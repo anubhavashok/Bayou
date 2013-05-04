@@ -8,6 +8,8 @@ public class BayouHandler
 
     public void startClient(String ipClient, String ipReplica)
     {
+      ClientHandler c = new ClientHandler(ipClient);
+      clients.add(c);
       Instruction I= new Instruction("connectToServer",ipReplica);
       sendInstructionToClient(I,ipClient);
     }
