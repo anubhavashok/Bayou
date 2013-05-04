@@ -19,6 +19,8 @@ public class Bayou
     Init.totalClients=totalClients;
     setUpClients();
     //Assuming 2 replicas and 2 clients
+    // THE CLIENTS ARE READY
+    writeRequest();
     
     
     
@@ -49,7 +51,18 @@ public class Bayou
     
   }
 
-  public String getIP(int id)
+  public String getClientIP(int id)
+  {
+    for(ClientHandler c : clients)
+    {
+      if(s[0].equals(Integer.toString(id))) //id found
+      {
+        return s[1];                        //return IP
+      }
+    }
+    else return null;
+  }
+  public String getReplicaIP(int id)
   {
     for(String[] s: replicas)
     {
@@ -60,11 +73,13 @@ public class Bayou
     }
     else return null;
   }
-  public writeRequest(String clientIP)
+  public writeRequest()
   {
     Scanner s = new Scanner(System.in);
     System.out.println("Please enter which id client you want to use to do the write: ");
+    displayClients();
     int id = s.nextInt();
+    String clientIP = getClientIP(id);
     System.out.println("Please enter what kind of operation you want to do: ");
     String op = s.nextLine();
     System.out.println("Please enter Song Name: ");
@@ -83,5 +98,12 @@ public class Bayou
     Write w = new Write(new SongEntry(songName,URL),op);
     Instruction i = new Instruction("Write", w);
     sendInstructionToClient(I,clientIP);            //called by bayouhandler
+  }
+  public void displayClients()
+  {int i=0;
+    for (ClientHandler c : clients)
+    {
+      System.out.println("Client id: "+i+" Server that Client is connected to: "+c.getServerIP());i++;
+    }
   }
 }
