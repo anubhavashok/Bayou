@@ -63,7 +63,7 @@ public class Bayou
   public writeRequest(String clientIP)
   {
     Scanner s = new Scanner(System.in);
-    System.out.println("Please which id client you want to use to do the write: ");
+    System.out.println("Please enter which id client you want to use to do the write: ");
     int id = s.nextInt();
     System.out.println("Please enter what kind of operation you want to do: ");
     String op = s.nextLine();
