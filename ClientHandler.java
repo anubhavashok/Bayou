@@ -5,6 +5,10 @@ public class ClientHandler
     {
       executeInstruction(waitForInstructions());
     }
+    ClientHandler(String ip)
+    {
+        c=new Client(ip);
+    }
     public Instruction waitForInstructions() throws IOException
     {
       ServerSocket ss= new ServerSocket(2001);
