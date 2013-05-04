@@ -1,6 +1,10 @@
 public class ReplicaHandler
 {
     private Replica r;
+    ReplicaHandler(int id, String ip)
+    {
+        r=new Replica(id,ip);
+    }
     public void startAntiEntropy()
     {
       
