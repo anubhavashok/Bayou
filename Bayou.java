@@ -3,6 +3,7 @@ public class Bayou
   public static void main(String[] args)
   {
     private ArrayList<String[]> replicas=new ArrayList<String[]>();
+    private ArrayList<ClientHandler> clients=new ArrayList<ClientHandler>();
     private Client c= new Client(InetAddress.getLocalHost());
     private PrimaryReplica pr= new PrimaryReplica(0,InetAddress.getLocalHost().getHostAddress());
     //set total nodes
@@ -17,6 +18,8 @@ public class Bayou
     int totalClients = s.nextInt();
     Init.totalClients=totalClients;
     setUpClients();
+    //Assuming 2 replicas and 2 clients
+    
     
     
   }
@@ -44,9 +47,7 @@ public class Bayou
       String ip1 = s.nextLine();
       System.out.println("Please enter the IP address of the replica the client is connected to: ");
       String ip2 = s.nextLine();
-      startClient(ip1,ip2);
-      clients.add(ip1);
-      
+      startClient(ip1,ip2);      
     }
     
   }
@@ -85,9 +86,5 @@ public class Bayou
     Write w = new Write(new SongEntry(songName,URL),op);
     Instruction i = new Instruction("Write", w);
     sendInstructionToClient(I,clientIP);            //called by bayouhandler
-  }
-  public void setUpClients()
-  {
-    System.out.println("Enter ");
   }
 }
