@@ -8,9 +8,14 @@ public class Bayou
     //set total nodes
     System.out.println("Please enter number of replicas: ");
     Scanner s = new Scanner(System.in);
-    String totalReplicas = s.nextLine();
+    int totalReplicas = s.nextInt();
     Init.totalReplicas=totalReplicas;
     setUpReplicas();
+    // THE REPLICAS ARE SET TO GO
+    System.out.println("Please enter number of clients: ");
+    Scanner s = new Scanner(System.in);
+    int totalClients = s.nextInt();
+    Init.totalClients=totalClients;
     
     
   }
@@ -29,6 +34,20 @@ public class Bayou
       r[1]=ip;
       replicas.add(r);
     }
+  public void setUpClients()
+  {
+    for(int i=0;i<totalClients;i++)
+    {
+      Scanner s = new Scanner(System.in);
+      System.out.println("Please enter the IP address of the client started: ");
+      String ip1 = s.nextLine();
+      System.out.println("Please enter the IP address of the replica the client is connected to: ");
+      String ip2 = s.nextLine();
+      startClient(ip1,ip2);
+      clients.add(ip1);
+      
+    }
+    
   }
 
   public String getIP(int id)
@@ -65,5 +84,9 @@ public class Bayou
     Write w = new Write(new SongEntry(songName,URL),op);
     Instruction i = new Instruction("Write", w);
     sendInstructionToClient(I,clientIP);            //called by bayouhandler
+  }
+  public void setUpClients()
+  {
+    System.out.println("Enter ");
   }
 }
