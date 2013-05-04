@@ -16,6 +16,7 @@ public class Bayou
     Scanner s = new Scanner(System.in);
     int totalClients = s.nextInt();
     Init.totalClients=totalClients;
+    setUpClients();
     
     
   }
