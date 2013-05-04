@@ -1,7 +1,20 @@
+import java.lang.*;
+import java.io.*;
+import java.net.*;
+import java.util.*;
 public class Client
 {
   InetAddress svr;              //address of server that is connected to client
   
+  Client(InetAddress ip)
+  {
+    svr= ip;
+  }  
+  Client(String ip)
+  {
+    svr= InetAddress.getByName(ip);
+  }
+
   public void sendWrite(Write w)
   {
     try{
@@ -13,6 +26,7 @@ public class Client
     oos.close();
     os.close();
     skt.close();
+   Thread.sleep(1000);
   	}
   	catch(Exception e)
   	{
@@ -41,5 +55,18 @@ public class Client
   {
     //return current databse stored in local server.
     //OR wait for stable state and return stableDatabase
+	return null;
+  }
+  public void setServer(InetAddress add)
+  {
+    svr = add;
+  }
+  public String getServerIP()
+  {
+     return(svr.getHostAddress());
+  }
+  public void displayDatabase()
+  {
+     
   }
 }
