@@ -1,4 +1,4 @@
-public class Write implements Serializable 
+public class Write implements java.io.Serializable 
 {
   private String op;
   private SongEntry s;
@@ -52,4 +52,3 @@ public class Write implements Serializable
     return CSN;
   }
 }
-
