@@ -40,8 +40,21 @@ Class Definitions
 =================
 
 Bayou.java - Driver class which runs the protocol assuming all servers and clients have been started. Functions: writes, start anti-entropy etc.
+
 ReplicaHandler.java - Class that manages and instructs a single replica. Receives instructions from Bayou and communicates with replica
+
 ClientHandler.java - Class that manages and instructs a single client. Receives instructions from Bayou
+
 Replica.java - Contains all the functionality a replica should contain
+
 PrimaryReplica.java - inherited class of replica which contains additional committing and database merge functionality
+
 Client.java - Contains Client functions such as writing to a replica.
+
+Write.java - Contains structure of a Write
+
+SongEntry.java - Contains structure of a SongEntry
+
+Init.java - Contains intialization information, totalNodes etc.
+
+BayouHandler.java - contains various Bayou methods, phased out in final implementation
