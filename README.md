@@ -35,3 +35,13 @@ All the writes will eventually come across the Primary, which orders writes and 
 Eventually, when the primary communicates with a replica, the replica will know which writes to commit.
 
 In this way, consistent storage will be achieved amongst all the replicas.
+
+Class Definitions
+=================
+
+Bayou.java - Driver class which runs the protocol assuming all servers and clients have been started. Functions: writes, start anti-entropy etc.
+ReplicaHandler.java - Class that manages and instructs a single replica. Receives instructions from Bayou and communicates with replica
+ClientHandler.java - Class that manages and instructs a single client. Receives instructions from Bayou
+Replica.java - Contains all the functionality a replica should contain
+PrimaryReplica.java - inherited class of replica which contains additional committing and database merge functionality
+Client.java - Contains Client functions such as writing to a replica.
