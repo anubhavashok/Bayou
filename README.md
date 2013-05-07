@@ -36,7 +36,7 @@ Eventually, when the primary communicates with a replica, the replica will know 
 
 In this way, consistent storage will be achieved amongst all the replicas.
 
-Class Definitions
+Class Descriptions
 =================
 
 Bayou.java - Driver class which runs the protocol assuming all servers and clients have been started. Functions: writes, start anti-entropy etc.
