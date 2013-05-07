@@ -5,6 +5,7 @@ Anti-Entropy protocol implemented in shared playlist storage
 
 ===========================================================
 Glossary
+==========================================================
 
 Client : Interface in which updates to playlist are made
 Replica : External Server where replicated copies of the playlist are stored
@@ -15,9 +16,11 @@ Accept Number: Order in which write was accepted by the replica.
 Commit Sequence Number (CSN): Incremental number that keeps track of committed writes.
 CommittedLog: Log of committed writes.
 WriteLog: Log of tentative writes.
+
 =============================================================
 
 Basic Outline and function of Program
+==================================================================
 
 When theres no constant connectivity to a main database of some sort, a good way to store and and updates 
 entries is to use an Anti-Entropy protocol, in this case Bayou.
